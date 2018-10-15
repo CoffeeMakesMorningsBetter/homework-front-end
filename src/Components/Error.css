@@ -1,0 +1,35 @@
+.error-parent {
+  position: relative;
+}
+
+.error-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  background: black;
+}
+
+.error-container {
+  display: flex; 
+  flex-direction: column;
+  border: black solid 1px;
+  justify-content: center;
+  align-items: center;
+}
+
+.show {
+  z-index: 100;
+}
+
+.hide {
+  z-index: -10;
+}
+
+.error-child img {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+}
