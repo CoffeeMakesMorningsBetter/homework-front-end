@@ -6,7 +6,7 @@ function errorHandler(res) {
   }
 }
 
-function cleanUp(arr) {
+function cleanUpGiphyData(arr) {
   return arr.map(gif => {
     let { id,  import_datetime, trending_datetime } = gif 
     let { url } = gif.images.downsized_large
@@ -16,10 +16,6 @@ function cleanUp(arr) {
 
 export {
   errorHandler,
-  cleanUp
+  cleanUpGiphyData
 }
 
-// .then(res => {
-//   let sanitizedData = cleanUp(res.data.data)
-//   console.log(sanitizedData)
-// })
