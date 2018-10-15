@@ -1,0 +1,9 @@
+.giphy-app {
+  display: flex;
+  background: pink;
+  border: black 2px solid;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  width: 75vw;
+}
