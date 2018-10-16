@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
 import SearchBar from './SearchBar';
+import GiphyGridContainer from './GiphyGridContainer'
 import { Error } from './Error';
 import { errorHandler, cleanUpGiphyData } from '../Helper/helperMethods'
 import './GiphyApp.css'
@@ -49,11 +50,12 @@ class GiphyApp extends Component {
   }
 
   render() {
-    const { error, errorShow } = this.state
+    const { error, errorShow, giphyResults } = this.state
     return (
       <div className='giphy-app'>
         <Navbar/>
         <SearchBar searchGiphy={this.searchGiphy} errors={this.handleChildrenErrors}/>
+        <GiphyGridContainer gifs={giphyResults}/>
         {error && <Error error={error} errorShow={errorShow} closeError={this.closeError}/>}
       </div>
     )

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash'; 
-import { cleanUpGiphyData } from '../Helper/helperMethods'
+import { cleanUpGiphyData } from '../Helper/helperMethods';
 import axios from 'axios';
-const API_KEY = '7XE4nPN3h4aCsT61eLUDWVvTbyFB9ZrR'
+import './SearchBars.css'
+
+const API_KEY = '7XE4nPN3h4aCsT61eLUDWVvTbyFB9ZrR';
+
 
 class SearchBar extends Component {
   constructor(props) {
