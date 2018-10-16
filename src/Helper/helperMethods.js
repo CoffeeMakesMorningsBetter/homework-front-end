@@ -14,8 +14,19 @@ function cleanUpGiphyData(arr) {
   })
 }
 
+function imagesLoaded(parentNode) {
+  console.log('inside imgesLoaded function!')
+  const imgElements = [...parentNode.querySelectorAll('img')]
+  for (let i = 0; i < imgElements.length; i++) {
+    const img = imgElements[i]
+    if (!img.complete) return false
+    }
+  return true 
+}
+
 export {
   errorHandler,
-  cleanUpGiphyData
+  cleanUpGiphyData,
+  imagesLoaded
 }
 

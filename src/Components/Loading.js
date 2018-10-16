@@ -3,6 +3,6 @@ import './Loading.css'
 
 export const Loading = () => (
   <div className='loading-container'>
-    <div className='loading-child'></div>
+    <div className='loader'></div>
   </div>
 )
