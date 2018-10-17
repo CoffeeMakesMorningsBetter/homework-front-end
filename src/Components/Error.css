@@ -1,31 +1,76 @@
 .error-parent {
   position: relative;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .error-close {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: -10px;
+  top: -10px;
   width: 32px;
   height: 32px;
   opacity: 0.3;
-  background: black;
+  background: green;
+  border-radius: 50%;
+  text-align: center;
+  color: black;
+  padding: 6px;
+  z-index: 101;
 }
 
 .error-container {
   display: flex; 
   flex-direction: column;
-  border: black solid 1px;
   justify-content: center;
-  align-items: center;
+  align-items: space-between;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 .show {
   z-index: 100;
 }
 
-.error-child img {
+.error-child-img {
   width: 80%;
-  height: 80%;
+  height: 100%;
   margin: 0 auto;
+}
+
+.error-child {
+  display: flex;
+  justify-content: center;
+}
+
+.error-child-img-container {
+  flex: 1;
+}
+
+@keyframes blink {
+  0% {
+    opacity: .2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .2;
+  }
+}
+
+.something-went-wrong span {
+  animation-name: blink;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.something-went-wrong span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.something-went-wrong span:nth-child(3) {
+  animation-delay: .4s;
 }

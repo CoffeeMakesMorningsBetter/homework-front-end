@@ -2,8 +2,8 @@
   height: 100vh;
   width: 75vw;
   z-index: 100;
-  background: red;
   position: absolute;
+  background: rgb(131, 135, 140);
 }
 
 .loader,

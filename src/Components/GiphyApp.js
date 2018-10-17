@@ -9,6 +9,7 @@ import './GiphyApp.css';
 
 const API_KEY = '7XE4nPN3h4aCsT61eLUDWVvTbyFB9ZrR'
 
+
 class GiphyApp extends Component {
   constructor(props) {
     super(props) 
@@ -36,8 +37,12 @@ class GiphyApp extends Component {
   }
 
   searchGiphy(result) {
+    console.log('why no fire')
     if(Array.isArray(result)){
-      this.setState({ giphyResults: result, error: null })
+      let state = { ...this.state }
+      state.giphyResults = result
+      state.error = null
+      this.setState({ ...state })
     } else {
       let { searchTerm } = result;
       axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchTerm}?&api_key=${API_KEY}&limit=50`)
@@ -46,6 +51,8 @@ class GiphyApp extends Component {
         if(res.data.data.length < 1) {
           this.setState({error: 'Nothing meets that search criteria', isLoading: false, giphyResults: []});
         } else {
+          console.log('In searchGiphy')
+          let sanitizedData = cleanUpGiphyData(res.data.data)
           let order = sortBy(sanitizedData, this.state.sortBy)
           this.setState({ giphyResults: order});
         }
@@ -55,20 +62,26 @@ class GiphyApp extends Component {
   }
 
   handleChildrenErrors(result) {
-    this.setState({ error: result.message, giphyResults: result.results, errorShow: true });
+    let state = {...this.state}
+    state.error = result.message
+    state.giphyResults = result.results
+    state.errorShow = true
+    this.setState({ ...state });
   }
 
   closeError() {
-    this.setState({ error: null, errorShow: false });
+    let state = { ...this.state }
+    state.error = null 
+    state.errorShow = false;
+    this.setState({ ...state });
   }
 
   order() {
     let state = {...this.state}
-    alert('clicked')
-    state.sortBy = state.sortBy === 'asc' ? 'desc': 'asc';
     let order = sortBy(state.giphyResults, state.sortBy)
+    state.sortBy = state.sortBy === 'asc' ? 'dsc': 'asc';
     state.giphyResults = order 
-    this.setState({...state})
+    this.setState({ ...state })
   }
 
   render() {

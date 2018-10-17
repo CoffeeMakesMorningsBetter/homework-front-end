@@ -4,8 +4,9 @@
   align-items: center;
   width: 100%;
   min-height: 4vh;
-  background: limegreen;
+  background: rgb(59,68,75);
   flex: 1 0 fit-content;
+  color: white;
 }
 
 .nav-bar-item {
