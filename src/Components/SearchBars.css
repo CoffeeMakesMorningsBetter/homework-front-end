@@ -1,8 +1,14 @@
 form {
   width: 90%;
   margin: 1rem auto;
+  padding: 0.5rem;
 }
 
 form > input {
   width: 100%;
+  padding-left: 0.25rem;
+}
+
+input:focus {
+  outline:none;
 }

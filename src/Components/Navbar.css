@@ -1,8 +1,15 @@
 .nav-bar-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5%;
+  min-height: 4vh;
   background: limegreen;
+  flex: 1 0 fit-content;
+}
+
+.nav-bar-item {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
 }

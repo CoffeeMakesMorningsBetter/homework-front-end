@@ -1,0 +1,14 @@
+.modal-class {
+  z-index: 1000;
+  width: 75vw;
+  max-height: 50vh;
+  margin: 0 auto;
+  position: absolute;
+  top: 25%;
+  border: lime;
+}
+
+.modal-container > img {
+  max-height: 30vh;
+  border: 5px solid rgba(255, 255, 255, .5)
+}

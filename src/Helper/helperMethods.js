@@ -15,7 +15,6 @@ function cleanUpGiphyData(arr) {
 }
 
 function imagesLoaded(parentNode) {
-  console.log('inside imgesLoaded function!')
   const imgElements = [...parentNode.querySelectorAll('img')]
   for (let i = 0; i < imgElements.length; i++) {
     const img = imgElements[i]
@@ -24,9 +23,19 @@ function imagesLoaded(parentNode) {
   return true 
 }
 
+function sortBy(arr, order) {
+  if(order === 'asc') {
+    arr.sort((a,b) => Date.parse(a.import_datetime) - Date.parse(b.import_datetime))
+  } else {
+    arr.sort((a,b) => Date.parse(b.import_datetime) - Date.parse(a.import_datetime))
+  }
+  return arr
+}
+
 export {
   errorHandler,
   cleanUpGiphyData,
-  imagesLoaded
+  imagesLoaded,
+  sortBy
 }
 

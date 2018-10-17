@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import SearchBar from './SearchBar';
 import GiphyGridContainer from './GiphyGridContainer';
 import { Error } from './Error';
-import { errorHandler, cleanUpGiphyData } from '../Helper/helperMethods';
+import { errorHandler, cleanUpGiphyData, sortBy } from '../Helper/helperMethods';
 import './GiphyApp.css';
 
 const API_KEY = '7XE4nPN3h4aCsT61eLUDWVvTbyFB9ZrR'
@@ -21,6 +21,7 @@ class GiphyApp extends Component {
     this.searchGiphy = this.searchGiphy.bind(this);
     this.handleChildrenErrors = this.handleChildrenErrors.bind(this);
     this.closeError = this.closeError.bind(this);
+    this.order = this.order.bind(this);
   }
   
   componentDidMount() {
@@ -28,7 +29,8 @@ class GiphyApp extends Component {
     .then(errorHandler)
     .then(res => {
       let sanitizedData = cleanUpGiphyData(res.data.data)
-      this.setState({ giphyResults: sanitizedData});
+      let order = sortBy(sanitizedData, this.state.sortBy)
+      this.setState({ giphyResults: order});
     })
     .catch(error => this.setState({ error: 'Something went wrong'}));
   }
@@ -44,8 +46,8 @@ class GiphyApp extends Component {
         if(res.data.data.length < 1) {
           this.setState({error: 'Nothing meets that search criteria', isLoading: false, giphyResults: []});
         } else {
-          let sanitizedData = cleanUpGiphyData(res.data.data);
-          this.setState({ giphyResults: sanitizedData});
+          let order = sortBy(sanitizedData, this.state.sortBy)
+          this.setState({ giphyResults: order});
         }
       })
       .catch(error => this.setState({ error: 'Something went wrong'}));
@@ -60,11 +62,20 @@ class GiphyApp extends Component {
     this.setState({ error: null, errorShow: false });
   }
 
+  order() {
+    let state = {...this.state}
+    alert('clicked')
+    state.sortBy = state.sortBy === 'asc' ? 'desc': 'asc';
+    let order = sortBy(state.giphyResults, state.sortBy)
+    state.giphyResults = order 
+    this.setState({...state})
+  }
+
   render() {
     const { error, errorShow, giphyResults } = this.state
     return (
       <div className='giphy-app'>
-        <Navbar/>
+        <Navbar order={this.order}/>
         <SearchBar searchGiphy={this.searchGiphy} errors={this.handleChildrenErrors}/>
         <GiphyGridContainer gifs={giphyResults}/>
         {error && <Error error={error} errorShow={errorShow} closeError={this.closeError}/>}

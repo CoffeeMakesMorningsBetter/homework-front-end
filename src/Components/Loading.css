@@ -1,8 +1,9 @@
 .loading-container {
-  width: 80vw;
   height: 100vh;
+  width: 75vw;
   z-index: 100;
-  background: limegreen;
+  background: red;
+  position: absolute;
 }
 
 .loader,

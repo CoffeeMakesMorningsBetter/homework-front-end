@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash'; 
+import _ from 'lodash';
 import { cleanUpGiphyData } from '../Helper/helperMethods';
 import axios from 'axios';
 import './SearchBars.css'
@@ -8,7 +8,7 @@ const API_KEY = '7XE4nPN3h4aCsT61eLUDWVvTbyFB9ZrR';
 
 class SearchBar extends Component {
   constructor(props) {
-    super(props) 
+    super(props)
     this.state = {
       search: '',
     }
@@ -23,29 +23,22 @@ class SearchBar extends Component {
 
   giphyApiSearch(e) {
     let searchValue = e.target.value
-    
-    if(!searchValue) {
-      console.log('TURD!')
-      return 
+
+    if (!searchValue) {
+      return
     }
 
     let { searchGiphy, errors } = this.props
 
-    axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchValue}&api_key=${API_KEY}&limit=25`, {
-      onDownloadProgress: (progressEvent) => {
-        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        console.log(progressEvent.lengthComputable)
-        console.log(percentCompleted);
-      }
-    })
-    .then(res => {
-      if(res.data.data.length === 0) {
-        errors({ message: 'No Results' , results: res.data.data });
-      } else {
-        let santizedData = cleanUpGiphyData(res.data.data);
-        searchGiphy(santizedData);
-      }
-    })
+    axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchValue}&api_key=${API_KEY}&limit=25`)
+      .then(res => {
+        if (res.data.data.length === 0) {
+          errors({ message: 'No Results', results: res.data.data });
+        } else {
+          let santizedData = cleanUpGiphyData(res.data.data);
+          searchGiphy(santizedData);
+        }
+      })
   }
 
   handleSubmit(e) {
@@ -57,13 +50,15 @@ class SearchBar extends Component {
   }
 
   render() {
-    return( 
+    return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor></label>
-        <input 
-        type='text'
-        name='search'
-        onChange={this.handleChange.bind(this)}
+        <label htmlFor='search'></label>
+        <input
+          id='search'
+          type='text'
+          name='search'
+          placeholder='Search A Gif'
+          onChange={this.handleChange.bind(this)}
         />
       </form>
     )

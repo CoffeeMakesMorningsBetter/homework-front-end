@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  padding-left: 4px;
   overflow: scroll;
 }
 
@@ -10,12 +9,13 @@
   flex: auto;
   height: 250px;
   min-width: 150px;
-  margin: 0 8px 8px 0;
-  border-radius: 5px;
+  margin: 0 10px 10px 0;
+  border-radius: 10px;
 }
 
 .giphy-grid-item > img {
   border-radius: 10px;
+  margin-left: 5px;
 }
 
 .giphy-grid-item:nth-child(4n+1) {
